@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CIM.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="FileIOStream.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="H_Cluster.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CIM.h">
+    <ClInclude Include="FileIOStream.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="FileIOStream.h">
+    <ClInclude Include="H_Cluster.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

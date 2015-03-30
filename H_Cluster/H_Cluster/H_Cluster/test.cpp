@@ -1,22 +1,52 @@
-#include "CIM.h"
+#include "H_Cluster.h"
 #include "FileIOStream.h"
 
 int main(){
 	FileIOStream fios;
 	cv::Mat m;
-	std::string filename = "exampleAM.yml";
-	std::string label = "adjacency matrix";
-	fios.readData(filename, label, m);
+	std::string filename1 = "exampleAM.yml";
+	std::string label1 = "adjacency matrix";
+	std::string filename2 = "exampleSim.yml";
+	std::string label2 = "similarity";
+	std::string filename3 = "exampleLabel.yml";
+	std::string label3 = "cluster label";
 
-	CIM cim, *cim_ptr;
+	std::string filename4 = "exampleCluster_q.yml";
+	std::string label4 = "cluster q";
+
+	std::string filename5 = "exampleCluster_is.yml";
+	std::string label5 = "cluster is";
+
+	std::string filename6 = "exampleCluster_ds.yml";
+	std::string label6 = "cluster ds";
+
+	std::string filename7 = "exampleCluster.yml";
+	std::string label7 = "cluster cluster";
+
+	//fios.readData(filename1, label1, m);
+
+	HCluster HCluster, *HCluster_ptr;
 	
-	cim.start(m);
+	//HCluster.start(m);
+	HCluster.start();
 
-	//cim_ptr = new CIM();
-	//cim = *cim_ptr;
 
-	//cim.check();
+	fios.writeData(filename1, label1, HCluster.getAdjMat());
+	fios.writeData(filename2, label2, HCluster.getSim());
+	fios.writeData(filename3, label3, HCluster.getNodeInfo());
 
+	fios.writeData(filename4, label4, HCluster.getCluster_q());
+	fios.writeData(filename5, label5, HCluster.getCluster_is());
+	fios.writeData(filename6, label6, HCluster.getCluster_ds());
+	fios.writeData(filename7, label7, HCluster.getCluster());
+
+
+	//HCluster_ptr = new HCluster();
+	//HCluster = *HCluster_ptr;
+
+	//HCluster.check();
+
+	std::cout << "h_cluster end" << std::endl;
 	getchar();
 	return 0;
 }

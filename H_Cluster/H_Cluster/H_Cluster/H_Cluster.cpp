@@ -629,17 +629,17 @@ void HCluster::start(){
 	{ 0, 0, 0, 0, 0, 0.8660, 1.0000, 0 }
 	};*/
 
-	/*float dis[NODENUM][NODENUM] =
+	float dis[NODENUM][NODENUM] =
 	{
-	{ 0, 1, 1, 1, 0, 0, 0, 0 },
-	{ 1, 0, 1, 0, 0, 0, 0, 0 },
-	{ 1, 1, 0, 1, 0, 0, 0, 0 },
-	{ 1, 0, 1, 0, 1, 0, 0, 0 },
-	{ 0, 0, 0, 1, 0, 1, 0, 0 },
-	{ 0, 0, 0, 0, 1, 0, 1, 1 },
-	{ 0, 0, 0, 0, 0, 1, 0, 1 },
-	{ 0, 0, 0, 0, 0, 1, 1, 0 }
-	};*/
+		{ 0, 1, 1, 1, 0, 0, 0, 0 },
+		{ 1, 0, 1, 0, 0, 0, 0, 0 },
+		{ 1, 1, 0, 1, 0, 0, 0, 0 },
+		{ 1, 0, 1, 0, 1, 0, 0, 0 },
+		{ 0, 0, 0, 1, 0, 1, 0, 0 },
+		{ 0, 0, 0, 0, 1, 0, 1, 1 },
+		{ 0, 0, 0, 0, 0, 1, 0, 1 },
+		{ 0, 0, 0, 0, 0, 1, 1, 0 }
+	};
 
 	/*float dis[NODENUM][NODENUM] =
 	{
@@ -677,12 +677,12 @@ void HCluster::start(){
 	adjMat = cv::Mat(cv::Size(NODENUM, NODENUM), CV_32F, cv::Scalar::all(0));
 
 
-	srand(time(NULL));
+	/*srand(time(NULL));
 	for (int i = 0; i < 6300; i++){
-		int x = rand() % NODENUM;
-		int y = rand() % NODENUM;
-		adjMat.ptr<float>(y)[x] = 1;
-	}
+	int x = rand() % NODENUM;
+	int y = rand() % NODENUM;
+	adjMat.ptr<float>(y)[x] = 1;
+	}*/
 
 	//std::list<cv::Point2i>::iterator tmp_itr;
 	for (int i = 0; i < NODENUM; i++){
@@ -696,20 +696,20 @@ void HCluster::start(){
 		cluster.push_back(tmp_list);
 	}
 
-	/*for (int row = 0; row < NODENUM; row++){
-	for (int col = 0; col < NODENUM; col++){
-	ndistance.ptr<float>(row)[col] = dis[row][col];
-	if (col > row && dis[row][col] > 0){
-	edge_dectct.push_back(cv::Point3f(row, col, dis[row][col]));
+	for (int row = 0; row < NODENUM; row++){
+		for (int col = 0; col < NODENUM; col++){
+			ndistance.ptr<float>(row)[col] = dis[row][col];
+			if (col > row && dis[row][col] > 0){
+				edge_dectct.push_back(cv::Point3f(row, col, dis[row][col]));
+			}
+		}
 	}
-	}
-	}*/
 
 	for (int row = 0; row < NODENUM; row++){
 		for (int col = 0; col < NODENUM; col++){
-			//adjMat.ptr<float>(row)[col] = dis[row][col];
-			if (col > row && /*dis[row][col]*/adjMat.ptr<float>(row)[col] > 0.1f){
-				edge_dectct.push_back(cv::Point3f(row, col, /*dis[row][col]*/adjMat.ptr<float>(row)[col]));
+			adjMat.ptr<float>(row)[col] = dis[row][col];
+			if (col > row && dis[row][col] && adjMat.ptr<float>(row)[col] > 0.1f){
+				edge_dectct.push_back(cv::Point3f(row, col, dis[row][col]/*adjMat.ptr<float>(row)[col]*/));
 			}
 		}
 	}

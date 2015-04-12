@@ -12,12 +12,12 @@
 #include <assert.h>
 #include <time.h>
 
-//#define NODENUM 8
+#define NODENUM 8
 //#define NODENUM 5
 
 //#define NODENUM 14
 
-#define NODENUM 100
+//#define NODENUM 100
 
 class HCluster
 {
